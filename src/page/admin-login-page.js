@@ -25,4 +25,12 @@ exports.AdminLoginPage = class AdminLoginPage extends MasterPage {
         let errorXpath = `(//label[./text()='${field}']/following::div[contains(concat(' ',@class,' '),' field-error ')])[1]`;
           await expect.soft(this.page.locator(errorXpath)).toHaveText(expectedError);
     }
+
+    async loginAsAdmin(email, password){
+        await this.open();
+        await this.isOnPage();
+        await this.inputTextByLabel('Email', email);
+        await this.inputTextByLabel('Password', password);
+        await this.clickButtonByLabel('SIGN IN');
+    }
 }
