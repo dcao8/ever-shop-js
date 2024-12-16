@@ -37,8 +37,8 @@ loginSuccessfullyTestData.forEach(({ email, password }) => {
     await iStep(`User input Meta description:`, newProductPage.inputTextAreaByLabel('Meta description', 'My Meta description'));
     await iStep(`User select Product Status is Enabled`, newProductPage.selectRadioButtonByLabel('Status', 'Enabled'));
     await iStep(`User select Product Visibility is Visible`, newProductPage.selectRadioButtonByLabel('Visibility', 'Visible'));
-    await iStep(`User select Product Manage stock is Yes`, newProductPage.selectRadioButtonByLabel('Manage stock?', 'Yes'));
-    await iStep(`User select Product Stock availability is Yes`, newProductPage.selectRadioButtonByLabel('Stock availability', 'Yes'));
+    await iStep(`User select Product Manage stock is Yes`, newProductPage.selectRadioButtonByLabel('Manage stock?', 'No'));
+    await iStep(`User select Product Stock availability is Yes`, newProductPage.selectRadioButtonByLabel('Stock availability', 'No'));
     await iStep(`User input Quantity:`, newProductPage.inputTextByLabel('Quantity', '10'));
     //await iStep(`User select option Default in Attribute group`, newProductPage.selectOptionByLabel('Attribute group', 'Default'));
     await iStep(`User select product attribute color`, newProductPage.selectAttribute('Color', 'Yellow'));
