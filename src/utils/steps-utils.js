@@ -1,7 +1,7 @@
 const allure = require('allure-js-commons');
 
-export async function iStep(stepName, action) {
+export async function iStep(stepName, page, action, ...args) {
     await allure.step(stepName, async () => {
-        await action;
+        await action.apply(page, args);
     });
 }

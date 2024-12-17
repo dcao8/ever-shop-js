@@ -25,35 +25,37 @@ exports.MasterPage = class MasterPage {
         await this.page.locator(menuItemXpath).click();
     }
 
-    async selectCategory(label, value){
-        let categoryLinkXpath=`//div[.//text()[normalize-space()='${label}']]//a[.//text()[normalize-space()='Select category']]`;
+    async selectCategory(label, value) {
+        let categoryLinkXpath = `//div[.//text()[normalize-space()='${label}']]//a[.//text()[normalize-space()='Select category']]`;
         await this.page.locator(categoryLinkXpath).click();
-        let categoryXpath=`//div[.//text()[normalize-space()='${label}']]//a[.//text()[normalize-space()='${value}']]`;
+        let categoryXpath = `//div[.//text()[normalize-space()='${label}']]//a[.//text()[normalize-space()='${value}']]`;
         await this.page.locator(categoryXpath).click();
     }
 
-    async selectDescriptionType(typeNUmber){
-        let xpath=`//div[./label[.//text()[normalize-space()='Description']]]//a[${typeNUmber}]`;
+    async selectDescriptionType(typeNUmber) {
+        let xpath = `//div[./label[.//text()[normalize-space()='Description']]]//a[${typeNUmber}]`;
         await this.page.locator(xpath).click();
     }
 
-    async inputDescription(content){
-        let xpath=`//div[./label[.//text()[normalize-space()='Description']]]//div[@data-placeholder-active='Type / to see the available blocks']`;
+    async inputDescription(content) {
+        let xpath = `//div[./label[.//text()[normalize-space()='Description']]]//div[@data-placeholder-active='Type / to see the available blocks']`;
         await this.page.locator(xpath).fill(content);
     }
 
-    async selectOptionByLabel(label, option){
-        let xpath=`//div[./label[.//text()[normalize-space()='${label}']]]//select`;
+    async selectOptionByLabel(label, option) {
+        let xpath = `//div[./label[.//text()[normalize-space()='${label}']]]//select`;
         await this.page.locator(xpath).selectOption(option);
     }
 
-    async selectRadioButtonByLabel(label, option){
-        let xpath=`//div[./label[.//text()[normalize-space()='${label}']]]//label[.//text()[normalize-space()='${option}']]`;
+    async selectRadioButtonByLabel(label, option) {
+        let xpath = `//div[./label[.//text()[normalize-space()='${label}']]]//label[.//text()[normalize-space()='${option}']]`;
         await this.page.locator(xpath).click();
     }
 
-    async verifyNotification(message){
-        let xpath=`//div[@role='alert' and .//text()[normalize-space()='${message}']]`;
-        await expect(this.page.locator(xpath)).toBeVisible();
+    async verifyNotification(message) {
+        //let xpath=`//div[@role='alert' and .//text()[normalize-space()='${message}']]`;
+        //await expect(this.page.locator(xpath)).toBeVisible();
+        let xpath = `//div[@role='alert']`;
+        await expect(this.page.locator(xpath)).toHaveText(message);
     }
 }

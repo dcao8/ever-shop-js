@@ -24,8 +24,8 @@ exports.NewCategoryPage = class NewCategoryPage extends MasterPage {
         await this.page.locator(xpath).setInputFiles(pathToUploadFile);
     }
 
-    async selectRadioButtonByLabel(label, option){
-        let xpath=`(//h3[.//text()[normalize-space()='${label}']]//following::label[.//text()[normalize-space()='${option}']])[1]`;
+    async selectRadioButtonByLabel(label, option) {
+        let xpath = `(//h3[.//text()[normalize-space()='${label}']]//following::label[.//text()[normalize-space()='${option}']])[1]`;
         await this.page.locator(xpath).click();
     }
 }
