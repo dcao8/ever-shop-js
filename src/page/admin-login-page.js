@@ -21,16 +21,16 @@ exports.AdminLoginPage = class AdminLoginPage extends MasterPage {
         await expect(this.page.locator(errorXpath)).toBeVisible();
     }
 
-    async verifyErrorLabel(field, expectedError){
+    async verifyErrorLabel(field, expectedError) {
         let errorXpath = `(//label[./text()='${field}']/following::div[contains(concat(' ',@class,' '),' field-error ')])[1]`;
-          await expect.soft(this.page.locator(errorXpath)).toHaveText(expectedError);
+        await expect.soft(this.page.locator(errorXpath)).toHaveText(expectedError);
     }
 
-    async loginAsAdmin(email, password){
+    async loginAsAdmin() {
         await this.open();
         await this.isOnPage();
-        await this.inputTextByLabel('Email', email);
-        await this.inputTextByLabel('Password', password);
+        await this.inputTextByLabel('Email', 'daych93@gmail.com');
+        await this.inputTextByLabel('Password', '12345678');
         await this.clickButtonByLabel('SIGN IN');
     }
 }

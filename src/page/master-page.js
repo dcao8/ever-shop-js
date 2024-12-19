@@ -58,4 +58,27 @@ exports.MasterPage = class MasterPage {
         let xpath = `//div[@role='alert']`;
         await expect(this.page.locator(xpath)).toHaveText(message);
     }
+
+    async selectCheckboxInTableByName(name) {
+        let xpath = `//table//tr[.//a[text()[normalize-space()='${name}']]]//label`;
+        let isChecked = await this.page.locator(xpath).isChecked();
+        if (!isChecked) {
+            await this.page.locator(xpath).click();
+        }
+    }
+
+    async clickButtonInTableByLabel(label) {
+        let buttonXpath = `//table//a[.//text()[normalize-space()='${label}']]`;
+        await this.page.locator(buttonXpath).click();
+    };
+
+    async verifyDialogMessage(message) {
+        let xpath = `//div[@role='dialog']//h2[contains(concat(' ',@class,' '),' card-title ')]`;
+        await expect(this.page.locator(xpath)).toHaveText(message);
+    }
+
+    async clickButtonOnDialogByLabel(label) {
+        let buttonXpath = `//div[@role='dialog']//button[.//text()[normalize-space()='${label}']]`;
+        await this.page.locator(buttonXpath).click();
+    }
 }

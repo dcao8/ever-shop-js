@@ -11,4 +11,10 @@ exports.DashboardPage = class DashboardPage extends MasterPage {
     async isOnPage() {
         await expect(this.page.locator(this.logoTextXpath)).toBeVisible();
     }
+
+    async createProductByRequest(dataRequest) {
+        await this.page.request.post('http://localhost:3000/api/products', {
+            data: dataRequest
+        });
+    }
 }
