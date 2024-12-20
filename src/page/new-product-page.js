@@ -39,21 +39,4 @@ exports.NewProductPage = class NewProductPage extends MasterPage {
         let urlKey = `UrlKey${new Date().getTime()}`;
         await this.inputTextByLabel('Url key', urlKey);
     }
-
-    async getProductId() {
-        this.page.route('**', async (route, request) => {
-            if (request.url().includes('/api/products')) {
-                const response = await route.fetch();
-                const json = await response.json();
-                this.productId = json.data.uuid;
-                await route.fulfill({ response, json });
-            } else {
-                route.continue();
-            }
-        });
-    }
-
-    async cleanUpData() {
-        await this.page.request.delete(`http://localhost:3000/api/products/${this.productId}`);
-    }
 }

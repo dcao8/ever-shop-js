@@ -67,6 +67,11 @@ exports.MasterPage = class MasterPage {
         }
     }
 
+    async selectItemInTableByName(name) {
+        let xpath = `//table//a[text()[normalize-space()='${name}']]`;
+        await this.page.locator(xpath).click();
+    }
+
     async clickButtonInTableByLabel(label) {
         let buttonXpath = `//table//a[.//text()[normalize-space()='${label}']]`;
         await this.page.locator(buttonXpath).click();
@@ -80,5 +85,22 @@ exports.MasterPage = class MasterPage {
     async clickButtonOnDialogByLabel(label) {
         let buttonXpath = `//div[@role='dialog']//button[.//text()[normalize-space()='${label}']]`;
         await this.page.locator(buttonXpath).click();
+    }
+
+    async getProductId() {
+        this.page.route('**', async (route, request) => {
+            if (request.url().includes('/api/products')) {
+                const response = await route.fetch();
+                const json = await response.json();
+                this.productId = json.data.uuid;
+                await route.fulfill({ response, json });
+            } else {
+                route.continue();
+            }
+        });
+    }
+
+    async cleanUpData() {
+        await this.page.request.delete(`http://localhost:3000/api/products/${this.productId}`);
     }
 }

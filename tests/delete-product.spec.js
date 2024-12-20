@@ -3,7 +3,7 @@ const { iStep } = require('../src/utils/steps-utils');
 const { AdminLoginPage } = require('../src/page/admin-login-page');
 const { DashboardPage } = require('../src/page/dashboard-page');
 const { ProductPage } = require('../src/page/product-page');
-const { deleteProductTestData, newProductData } = require('../src/test-data/delete-product-test-data');
+const { deleteProductTestData, newProductData } = require('../src/test-data/new-product-request-data');
 
 let adminLoginPage;
 let dashboardPage;
