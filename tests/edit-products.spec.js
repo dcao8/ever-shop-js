@@ -27,7 +27,7 @@ test.afterEach('afterEach', async ({ page }) => {
 test('Verify admin is able to create new product', async ({ page }) => {
   await iStep('User login to system as Admin', adminLoginPage, adminLoginPage.loginAsAdmin);
   await iStep(`User should be on Dashboard page`, dashboardPage, dashboardPage.isOnPage);
-  await dashboardPage.createProductByRequest(newProductData);
+  await iStep(`User create product by API`, dashboardPage, dashboardPage.createProductByRequest(newProductData));
   await iStep('User go to Product page', productPage, productPage.open);
   await iStep(`User should be on Product page`, productPage, productPage.isOnPage);
   await iStep(`User select product: ${newProductData['name']}`, productPage, productPage.selectItemInTableByName, newProductData['name']);

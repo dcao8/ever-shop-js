@@ -1,9 +1,10 @@
 const { expect } = require('@playwright/test');
 const { MasterPage } = require('./master-page');
 const path = require('path');
+const { NEW_CATEGORY_PATH, APP_URL } = require('../utils/config-utils');
 
 exports.NewCategoryPage = class NewCategoryPage extends MasterPage {
-    url = 'http://localhost:3000/admin/categories/new';
+    url = `${APP_URL}${NEW_CATEGORY_PATH}`;
     pageHeaderXpath = "//h1[contains(concat(' ',@class,' '), ' page-heading-title ') and ./text()[normalize-space()='Create A New category']]";
 
     constructor(page) {

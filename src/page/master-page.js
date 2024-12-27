@@ -1,4 +1,5 @@
 const { expect } = require("allure-playwright");
+const { APP_URL } = require("../utils/config-utils");
 
 exports.MasterPage = class MasterPage {
     constructor(page) {
@@ -53,8 +54,6 @@ exports.MasterPage = class MasterPage {
     }
 
     async verifyNotification(message) {
-        //let xpath=`//div[@role='alert' and .//text()[normalize-space()='${message}']]`;
-        //await expect(this.page.locator(xpath)).toBeVisible();
         let xpath = `//div[@role='alert']`;
         await expect(this.page.locator(xpath)).toHaveText(message);
     }
@@ -101,6 +100,6 @@ exports.MasterPage = class MasterPage {
     }
 
     async cleanUpData() {
-        await this.page.request.delete(`http://localhost:3000/api/products/${this.productId}`);
+        await this.page.request.delete(`${APP_URL}/api/products/${this.productId}`);
     }
 }

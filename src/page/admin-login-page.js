@@ -1,8 +1,9 @@
 const { expect } = require('@playwright/test');
 const { MasterPage } = require('./master-page');
+const { LOGIN_PATH, APP_URL, EMAIL_ADMIN, PASSWORD_ADMIN } = require('../utils/config-utils');
 
 exports.AdminLoginPage = class AdminLoginPage extends MasterPage {
-    url = 'http://localhost:3000/admin/login';
+    url = `${APP_URL}${LOGIN_PATH}`;
 
     constructor(page) {
         super(page);
@@ -29,8 +30,8 @@ exports.AdminLoginPage = class AdminLoginPage extends MasterPage {
     async loginAsAdmin() {
         await this.open();
         await this.isOnPage();
-        await this.inputTextByLabel('Email', 'daych93@gmail.com');
-        await this.inputTextByLabel('Password', '12345678');
+        await this.inputTextByLabel('Email', EMAIL_ADMIN);
+        await this.inputTextByLabel('Password', PASSWORD_ADMIN);
         await this.clickButtonByLabel('SIGN IN');
     }
 }
