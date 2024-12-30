@@ -14,6 +14,11 @@ test.beforeEach('beforeEach', async ({ page }) => {
     adminLoginPage = new AdminLoginPage(page);
     dashboardPage = new DashboardPage(page);
     newCategoryPage = new NewCategoryPage(page);
+    await newCategoryPage.getCategoryId();
+});
+
+test.afterEach('afterEach', async ({ page }) => {
+    await newCategoryPage.cleanUpData();
 })
 
 test('Verify admin is able to create new category', async ({ page }) => {
