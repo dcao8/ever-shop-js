@@ -6,28 +6,30 @@ const { beforeEach } = require('node:test');
 const { EditProductPage } = require('../src/page/edit-product-page');
 const { ProductPage } = require('../src/page/product-page');
 const { newProductData } = require('../src/test-data/new-product-request-data');
+const { NewProductPage } = require('../src/page/new-product-page');
 
 let adminLoginPage;
 let dashboardPage;
 let productPage;
+let newProductPage;
 let editProductPage;
 
 test.beforeEach('beforeEach', async ({ page }) => {
   adminLoginPage = new AdminLoginPage(page);
   dashboardPage = new DashboardPage(page);
   productPage = new ProductPage(page);
+  newProductPage = new NewProductPage(page);
   editProductPage = new EditProductPage(page);
-  await editProductPage.getProductId();
 })
 
 test.afterEach('afterEach', async ({ page }) => {
-  await editProductPage.cleanUpData();
+  await newProductPage.cleanUpData();
 })
 
 test('Verify admin is able to create new product', async ({ page }) => {
   await iStep('User login to system as Admin', adminLoginPage, adminLoginPage.loginAsAdmin);
   await iStep(`User should be on Dashboard page`, dashboardPage, dashboardPage.isOnPage);
-  await iStep(`User create product by API`, dashboardPage, dashboardPage.createProductByRequest(newProductData));
+  await iStep(`User Create product by API Request`, newProductPage, newProductPage.createProductByRequest, newProductData);
   await iStep('User go to Product page', productPage, productPage.open);
   await iStep(`User should be on Product page`, productPage, productPage.isOnPage);
   await iStep(`User select product: ${newProductData['name']}`, productPage, productPage.selectItemInTableByName, newProductData['name']);

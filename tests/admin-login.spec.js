@@ -15,35 +15,35 @@ test.beforeEach('beforeEach', async ({ page }) => {
 
 loginSuccessfullyTestData.forEach(({ email, password }) => {
   test('Verify login successfully', async ({ page }) => {
-    await iStep('User go to Admin Login page', adminLoginPage.open());
-    await iStep('User should be on Admin Login page', adminLoginPage.isOnPage());
-    await iStep(`User input Email: ${email}`, adminLoginPage.inputTextByLabel('Email', email));
-    await iStep(`User input Password: ${password}`, adminLoginPage.inputTextByLabel('Password', password));
-    await iStep('User click SIGN IN button', adminLoginPage.clickButtonByLabel('SIGN IN'));
-    await iStep(`User should be on Dashboard page`, dashboard.isOnPage());
+    await iStep('User go to Admin Login page', adminLoginPage, adminLoginPage.open);
+    await iStep('User should be on Admin Login page', adminLoginPage, adminLoginPage.isOnPage);
+    await iStep(`User input Email: ${email}`, adminLoginPage, adminLoginPage.inputTextByLabel, 'Email', email);
+    await iStep(`User input Password: ${password}`, adminLoginPage, adminLoginPage.inputTextByLabel, 'Password', password);
+    await iStep('User click SIGN IN button', adminLoginPage, adminLoginPage.clickButtonByLabel, 'SIGN IN');
+    await iStep(`User should be on Dashboard page`, dashboard, dashboard.isOnPage);
   });
 });
 
 loginFailedTestData.forEach(({ testCase, email, password, error }) => {
   test(`${testCase}`, async ({ page }) => {
-    await iStep('User go to Admin Login page', adminLoginPage.open());
-    await iStep('User should be on Admin Login page', adminLoginPage.isOnPage());
-    await iStep(`User input Email: ${email}`, adminLoginPage.inputTextByLabel('Email', email));
-    await iStep(`User input Password: ${password}`, adminLoginPage.inputTextByLabel('Password', password));
-    await iStep('User click SIGN IN button', adminLoginPage.clickButtonByLabel('SIGN IN'));
-    await iStep(`User should login failed`, adminLoginPage.isLoginFailed());
+    await iStep('User go to Admin Login page', adminLoginPage, adminLoginPage.open);
+    await iStep('User should be on Admin Login page', adminLoginPage, adminLoginPage.isOnPage);
+    await iStep(`User input Email: ${email}`, adminLoginPage, adminLoginPage.inputTextByLabel, 'Email', email);
+    await iStep(`User input Password: ${password}`, adminLoginPage, adminLoginPage.inputTextByLabel, 'Password', password);
+    await iStep('User click SIGN IN button', adminLoginPage, adminLoginPage.clickButtonByLabel, 'SIGN IN');
+    await iStep(`User should login failed`, adminLoginPage, adminLoginPage.isLoginFailed);
   });
 });
 
 validateLoginFormTestData.forEach(({ testCase, inputEmail, errorEmail, inputPassword, errorPassword }) => {
   test(`${testCase}`, async ({ page }, testInfo) => {
-    await iStep('User go to Admin Login page', adminLoginPage.open());
-    await iStep('User should be on Admin Login page', adminLoginPage.isOnPage());
-    await iStep(`User input Email: ${inputEmail}`, adminLoginPage.inputTextByLabel('Email', inputEmail));
-    await iStep(`User input Password: ${inputPassword}`, adminLoginPage.inputTextByLabel('Password', inputPassword));
-    await iStep('User click SIGN IN button', adminLoginPage.clickButtonByLabel('SIGN IN'));
-    await iStep('Error should be displayed for Email', adminLoginPage.verifyErrorLabel('Email', errorEmail));
-    await iStep('Error should be displayed for Password', adminLoginPage.verifyErrorLabel('Password', errorPassword));
+    await iStep('User go to Admin Login page', adminLoginPage, adminLoginPage.open);
+    await iStep('User should be on Admin Login page', adminLoginPage, adminLoginPage.isOnPage);
+    await iStep(`User input Email: ${inputEmail}`, adminLoginPage, adminLoginPage.inputTextByLabel, 'Email', inputEmail);
+    await iStep(`User input Password: ${inputPassword}`, adminLoginPage, adminLoginPage.inputTextByLabel, 'Password', inputPassword);
+    await iStep('User click SIGN IN button', adminLoginPage, adminLoginPage.clickButtonByLabel, 'SIGN IN');
+    await iStep('Error should be displayed for Email', adminLoginPage, adminLoginPage.verifyErrorLabel, 'Email', errorEmail);
+    await iStep('Error should be displayed for Password', adminLoginPage, adminLoginPage.verifyErrorLabel, 'Password', errorPassword);
     expect(testInfo.errors).toEqual([]);
   });
 });
