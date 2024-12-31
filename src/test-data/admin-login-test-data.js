@@ -34,32 +34,3 @@ export const validateLoginFormTestData = [
         errorPassword: "This field can not be empty"
     }
 ]
-
-// export const validateLoginFormTestData = [
-//     {
-//         testCase: "Validate Login Form in case of empty Email and Passoword",
-//         data: {
-//             "Email": {
-//                 input: "",
-//                 error: "This field can not be empty"
-//             },
-//             "Password": {
-//                 input: "",
-//                 error: "This field can not be empty"
-//             }
-//         }
-//     },
-//     {
-//         testCase: "Validate Login Form in case of invalid Email and empty Password",
-//         data: {
-//             "Email": {
-//                 input: "day@cao",
-//                 error: "Invalid email"
-//             },
-//             "Password": {
-//                 input: "",
-//                 error: "This field can not be empty"
-//             }
-//         }
-//     }
-// ]

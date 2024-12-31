@@ -1,5 +1,4 @@
 const { expect } = require("allure-playwright");
-const { APP_URL } = require("../utils/config-utils");
 
 exports.MasterPage = class MasterPage {
     constructor(page) {

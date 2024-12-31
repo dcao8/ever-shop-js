@@ -2,9 +2,7 @@ const { test, expect } = require('@playwright/test');
 const { iStep } = require('../src/utils/steps-utils');
 const { AdminLoginPage } = require('../src/page/admin-login-page');
 const { DashboardPage } = require('../src/page/dashboard-page');
-const { beforeEach } = require('node:test');
 const { NewCategoryPage } = require('../src/page/new-category-page');
-const { loginSuccessfullyTestData } = require('../src/test-data/admin-login-test-data');
 
 let adminLoginPage;
 let dashboardPage;
